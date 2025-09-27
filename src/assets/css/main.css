@@ -506,18 +506,42 @@ main {
   }
   
   .product-card {
-    padding: 0.75rem;
+    padding: 0;
     border-radius: 12px;
     max-width: 100%;
     width: 100%;
     max-width: 180px; /* Width limit for mobile cards */
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
   }
   
   .product-card img {
-    max-width: 100%;
-    height: auto;
-    max-height: 120px;
+    width: 100%;
+    height: 160px;
     object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    margin: 0;
+  }
+  
+  .product-card h3,
+  .product-card .description,
+  .product-card .price-container,
+  .product-card .btn-whatsapp {
+    padding: 0 0.75rem;
+  }
+  
+  .product-card h3 {
+    margin: 0.75rem 0 0.5rem 0;
+  }
+  
+  .product-card .description {
+    margin: 0.5rem 0;
+    flex-grow: 1;
+  }
+  
+  .product-card .btn-whatsapp {
+    margin: 0.75rem 0.75rem 0.75rem 0.75rem;
   }
 }
 
@@ -532,15 +556,42 @@ main {
   }
   
   .product-card {
-    padding: 0.5rem;
+    padding: 0;
     border-radius: 10px;
     max-width: 100%;
     width: 100%;
     max-width: 160px; /* Width limit for small mobile cards */
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
   }
   
   .product-card img {
-    max-height: 100px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    margin: 0;
+  }
+  
+  .product-card h3,
+  .product-card .description,
+  .product-card .price-container,
+  .product-card .btn-whatsapp {
+    padding: 0 0.5rem;
+  }
+  
+  .product-card h3 {
+    margin: 0.75rem 0 0.5rem 0;
+  }
+  
+  .product-card .description {
+    margin: 0.5rem 0;
+    flex-grow: 1;
+  }
+  
+  .product-card .btn-whatsapp {
+    margin: 0.75rem 0.5rem 0.75rem 0.5rem;
   }
 }
 
@@ -555,15 +606,42 @@ main {
   }
   
   .product-card {
-    padding: 0.4rem;
+    padding: 0;
     border-radius: 8px;
     max-width: 100%;
     width: 100%;
     max-width: 140px; /* Width limit for narrowest mobile screens */
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
   }
   
   .product-card img {
-    max-height: 90px;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+  }
+  
+  .product-card h3,
+  .product-card .description,
+  .product-card .price-container,
+  .product-card .btn-whatsapp {
+    padding: 0 0.4rem;
+  }
+  
+  .product-card h3 {
+    margin: 0.75rem 0 0.5rem 0;
+  }
+  
+  .product-card .description {
+    margin: 0.5rem 0;
+    flex-grow: 1;
+  }
+  
+  .product-card .btn-whatsapp {
+    margin: 0.75rem 0.4rem 0.75rem 0.4rem;
   }
   
   .product-card h2, .product-card h3 {
