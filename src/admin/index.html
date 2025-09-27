@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administración de Contenido</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    /* Estilos para el campo de precio personalizado */
+    [data-field-name="discountPrice"] {
+      transition: opacity 0.3s ease;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    
+    /* Estilo cuando está desactivado */
+    [data-field-name="discountPrice"][style*="display: none"] {
+      pointer-events: none;
+    }
+  </style>
+  <script src="auto-category.js"></script>
+</head>
+<body>
+  <!-- Cambiado de Decap CMS a Netlify CMS para compatibilidad -->
+  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+  
+  <script>
+    // Verifica si estamos en la página principal después de una redirección de Identity
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+  
+  <script>
+    // Función para controlar la visibilidad del campo de precio personalizado
+    const handleDiscountFieldVisibility = () => {
+      // Esperar a que el DOM esté completamente cargado
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        // Ejecutar después de un breve retraso para asegurar que los widgets estén cargados
+        setTimeout(() => {
+          // Buscar el select de descuento y el campo de precio personalizado
+          const discountSelect = document.querySelector('select[name="discount"]');
+          const discountPriceField = document.querySelector('[data-field-name="discountPrice"]');
+          
+          if (discountSelect && discountPriceField) {
+            // Función para actualizar la visibilidad
+            const updateVisibility = () => {
+              if (discountSelect.value === 'custom') {
+                discountPriceField.style.display = 'block';
+                discountPriceField.style.opacity = '1';
+                discountPriceField.querySelector('input').required = true;
+              } else {
+                discountPriceField.style.display = 'none';
+                discountPriceField.style.opacity = '0.5';
+                discountPriceField.querySelector('input').required = false;
+                discountPriceField.querySelector('input').value = '';
+              }
+            };
+            
+            // Establecer visibilidad inicial
+            updateVisibility();
+            
+            // Agregar listener para cambios en el select
+            discountSelect.addEventListener('change', updateVisibility);
+          }
+        }, 1000);
+      } else {
+        // Si el DOM no está listo, intentar nuevamente
+        setTimeout(handleDiscountFieldVisibility, 200);
+      }
+    };
+    
+    // Iniciar cuando el CMS esté listo
+     document.addEventListener('DOMContentLoaded', () => {
+       // Esperar a que el CMS se cargue completamente
+       const waitForCMS = () => {
+         if (window.CMS && window.CMS.getBackend) {
+           // CMS está listo, configurar los event listeners
+           // Removido el evento preSave que causaba conflictos
+           console.log('CMS loaded successfully');
+           
+           // Ejecutar la función de visibilidad después de que el CMS esté listo
+           setTimeout(handleDiscountFieldVisibility, 2000);
+         } else {
+           // Si CMS no está listo, intentar nuevamente
+           setTimeout(waitForCMS, 500);
+         }
+       };
+       
+       waitForCMS();
+     });
+     
+     // También intentar cuando la ventana esté completamente cargada
+     window.addEventListener('load', () => {
+       setTimeout(handleDiscountFieldVisibility, 3000);
+     });
+  </script>
+</body>
+</html>

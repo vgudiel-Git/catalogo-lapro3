@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <h1><a href="/">Mi Catálogo</a></h1>
+      <nav>
+        <ul class="main-menu">
+          <!-- Botón directo para desktop -->
+          <li class="desktop-ofertas">
+            <a href="/index.html#ofertas" class="ofertas-button desktop-button">Ofertas del Mes</a>
+          </li>
+          <!-- Botón directo para móvil/tablet -->
+          <li class="mobile-ofertas">
+            <a href="/index.html#ofertas" class="ofertas-button mobile-button">Ofertas</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer>
+    <p>&copy; <script>document.write(new Date().getFullYear())</script> Mi Catálogo</p>
+  </footer>
+
+  <!-- Script de Netlify Identity para redirección -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+
+  <script>
+    // Manejar clics en los botones de ofertas del header
+    document.addEventListener('DOMContentLoaded', function() {
+      const ofertasButtons = document.querySelectorAll('.ofertas-button');
+      
+      ofertasButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          // Verificar si estamos en la página principal
+          const categoryLinks = document.querySelectorAll('.category-nav a');
+          const ofertasSection = document.getElementById('ofertas');
+          
+          // Si estamos en la página principal (tiene navegación de categorías y sección ofertas)
+          if (categoryLinks.length > 0 && ofertasSection) {
+            e.preventDefault();
+            
+            // Activar la pestaña de ofertas
+            const categorySections = document.querySelectorAll('.category-section');
+            
+            // Eliminar la clase active de todos los enlaces y secciones
+            categoryLinks.forEach(l => l.classList.remove('active'));
+            categorySections.forEach(s => s.classList.remove('active'));
+            
+            // Activar la pestaña de ofertas
+            const ofertasLink = document.querySelector('.category-nav a[href="#ofertas"]');
+            
+            if (ofertasLink && ofertasSection) {
+              ofertasLink.classList.add('active');
+              ofertasSection.classList.add('active');
+              
+              // Scroll suave hacia la sección
+              ofertasSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+          // Si no estamos en la página principal, dejar que el enlace funcione normalmente
+          // (no hacer preventDefault, permitir la navegación a /index.html#ofertas)
+        });
+      });
+    });
+  </script>
+</body>
+</html>

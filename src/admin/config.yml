@@ -1,0 +1,84 @@
+# Backend: Le dice al CMS cómo conectarse a tu repositorio.
+# git-gateway es el puente mágico que usa Netlify Identity para que tus clientes
+# puedan guardar cambios sin necesitar una cuenta de GitHub.
+backend:
+  name: git-gateway
+  branch: main # O la rama que uses, ej: master
+
+# Añadimos local_backend para pruebas locales
+local_backend: true
+
+# Media: Define dónde se subirán las imágenes que tus clientes añadan.
+# Es buena práctica tener una carpeta específica para los productos.
+media_folder: "src/assets/images"
+public_folder: "/assets/images"
+
+# Collections: Define el contenido que tu cliente puede editar.
+collections:
+  - name: "products"
+    label: "Productos" # Cambiado a español para el cliente
+    folder: "src/products"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} - {{price}}"
+    preview_path: "/products/{{slug}}"
+    media_library:
+      config:
+        multiple: true
+    view_filters:
+      - label: "Con Ofertas"
+        field: discount
+        pattern: "^(?!none$).*"
+    view_groups:
+      - label: "Categoría"
+        field: category
+    summary_fields: ["title", "price"]
+    card_preview: true
+    card_preview_image: "image"
+    fields:
+      - { label: "Nombre del Producto", name: "title", widget: "string" }
+      - { label: "Descripción", name: "body", widget: "markdown" }
+      - { label: "Precio", name: "price", widget: "number", value_type: "float", min: 0 }
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        multiple: true
+        options:
+          - { label: "Ofertas", value: "ofertas" }
+          - { label: "Ropa & Calzado", value: "ropa-calzado" }
+          - { label: "Accesorios", value: "accesorios" }
+          - { label: "Mascotas", value: "mascotas" }
+          - { label: "Hogar", value: "hogar" }
+          - { label: "Electrodomésticos", value: "electrodomesticos" }
+          - { label: "Juguetes", value: "juguetes" }
+          - { label: "Deportes", value: "deportes" }
+          - { label: "Tecnología", value: "tecnologia" }
+          - { label: "Temporada", value: "temporada" }
+        hint: "Selecciona una o más categorías. Si el producto tiene descuento, se agregará automáticamente a 'Ofertas'"
+      - label: "Productos en Oferta"
+        name: "discount"
+        widget: "select"
+        options:
+          - { label: "Sin oferta", value: "none" }
+          - { label: "10% de descuento", value: "10" }
+          - { label: "20% de descuento", value: "20" }
+          - { label: "30% de descuento", value: "30" }
+          - { label: "Personalizar precio", value: "custom" }
+        default: "none"
+      - label: "Precio en Oferta"
+        name: "discountPrice"
+        widget: "number"
+        value_type: "float"
+        min: 0
+        required: false
+        hint: "Solo completar si seleccionó 'Personalizar precio' en la opción anterior"
+
+      - label: "Galería de Fotos del Producto"
+        name: "images"
+        widget: "list"
+        fields:
+          - { label: "Imagen", name: "image", widget: "image" }
+          - { label: "Texto Alternativo (Descripción para SEO)", name: "alt", widget: "string" }
+
+      # Campos técnicos, ocultos para el cliente
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/product.njk" }

@@ -1,0 +1,45 @@
+---
+title: "Todos los Productos"
+layout: layouts/base.njk
+permalink: "/products/"
+---
+
+<div class="category-sections">
+  <section class="product-grid category-section active">
+    <h2 class="category-title">Todos los Productos</h2>
+    {% for product in collections.products %}
+      <div class="product-card">
+        <a href="{{ product.url }}">
+          {% if product.data.images and (product.data.images | length) > 0 %}
+            {% if product.data.images[0].image %}
+              <img src="{{ product.data.images[0].image }}" alt="{{ product.data.images[0].alt | default(product.data.title) }}">
+            {% else %}
+              <img src="{{ product.data.images[0] }}" alt="{{ product.data.title }}">
+            {% endif %}
+          {% elif product.data.image %}
+            <img src="{{ product.data.image }}" alt="{{ product.data.title }}">
+          {% else %}
+            <img src="/assets/images/default.jpg" alt="{{ product.data.title }}">
+          {% endif %}
+          {% set discountPrice = product.data.price | calculateDiscountPrice(product.data.discount, product.data.discountPrice) %}
+          {% if discountPrice %}
+            {% if product.data.discount == 'custom' %}
+              <span class="offer-badge">Oferta</span>
+            {% else %}
+              <span class="offer-badge">Descuento {{ product.data.discount }}%</span>
+            {% endif %}
+          {% endif %}
+          <h3>{{ product.data.title }}</h3>
+          {% if discountPrice %}
+            <div class="price-container">
+              <p class="price discount-price">Q{{ discountPrice | formatPrice }}</p>
+              <p class="price original-price">Q{{ product.data.price | formatPrice }}</p>
+            </div>
+          {% else %}
+            <p class="price">Q{{ product.data.price | formatPrice }}</p>
+          {% endif %}
+        </a>
+      </div>
+    {% endfor %}
+  </section>
+</div>

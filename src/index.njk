@@ -1,0 +1,194 @@
+---
+title: "Mi Catálogo"
+layout: layouts/base.njk
+---
+
+<div class="category-tabs">
+  <ul class="category-nav">
+    <li><a href="#todos" class="active">Todos los Productos</a></li>
+    {% for category in categories %}
+      {% if loop.index <= 4 %}
+        <li class="category-item-visible"><a href="#{{ category.value }}">{{ category.label }}</a></li>
+      {% else %}
+        <li class="category-item-hidden"><a href="#{{ category.value }}">{{ category.label }}</a></li>
+      {% endif %}
+    {% endfor %}
+    <li class="category-toggle">
+      <button class="toggle-btn" onclick="toggleCategories()">
+        <span class="toggle-text">Más categorías</span>
+        <span class="toggle-icon">▼</span>
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div class="category-sections">
+  <!-- Sección para todos los productos -->
+  <section id="todos" class="product-grid category-section active">
+    <h2 class="category-title">Todos los Productos</h2>
+    {% for product in collections.products %}
+      <div class="product-card">
+        <a href="{{ product.url }}">
+          {% if product.data.images and (product.data.images | length) > 0 %}
+            {% if product.data.images[0].image %}
+              <img src="{{ product.data.images[0].image }}" alt="{{ product.data.images[0].alt | default(product.data.title) }}">
+            {% else %}
+              <img src="{{ product.data.images[0] }}" alt="{{ product.data.title }}">
+            {% endif %}
+          {% elif product.data.image %}
+            <img src="{{ product.data.image }}" alt="{{ product.data.title }}">
+          {% else %}
+            <img src="/assets/images/default.jpg" alt="{{ product.data.title }}">
+          {% endif %}
+          {% set discountPrice = product.data.price | calculateDiscountPrice(product.data.discount, product.data.discountPrice) %}
+          {% if discountPrice %}
+            {% if product.data.discount == 'custom' %}
+              <span class="offer-badge">Oferta</span>
+            {% else %}
+              <span class="offer-badge">Descuento {{ product.data.discount }}%</span>
+            {% endif %}
+          {% endif %}
+          <h3>{{ product.data.title }}</h3>
+          {% if product.templateContent %}
+            <div class="description">{{ product.templateContent | striptags | truncate(150) }}</div>
+          {% endif %}
+          {% set discountPrice = product.data.price | calculateDiscountPrice(product.data.discount, product.data.discountPrice) %}
+          {% if discountPrice %}
+            <div class="price-container">
+              <p class="price discount-price">Q{{ discountPrice | formatPrice }}</p>
+              <p class="price original-price">Q{{ product.data.price | formatPrice }}</p>
+            </div>
+          {% else %}
+            <p class="price">Q{{ product.data.price | formatPrice }}</p>
+          {% endif %}
+        </a>
+        <a class="btn-whatsapp" href="https://wa.me/16263941200?text=Hola, me interesa el producto: {{ product.data.title }}" target="_blank" rel="noopener">
+          <span>Comprar por</span>
+          <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.371c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+        </a>
+      </div>
+    {% endfor %}
+  </section>
+
+  <!-- Secciones para cada categoría -->
+  {% for category in categories %}
+    <section id="{{ category.value }}" class="product-grid category-section">
+      <h2 class="category-title">{{ category.label }}</h2>
+      {% set categoryCollection = collections["category-" + category.value] %}
+      {% if categoryCollection and (categoryCollection | length) > 0 %}
+        {% for product in categoryCollection %}
+          <div class="product-card">
+            <a href="{{ product.url }}">
+              {% if product.data.images and (product.data.images | length) > 0 %}
+                {% if product.data.images[0].image %}
+                  <img src="{{ product.data.images[0].image }}" alt="{{ product.data.images[0].alt | default(product.data.title) }}">
+                {% else %}
+                  <img src="{{ product.data.images[0] }}" alt="{{ product.data.title }}">
+                {% endif %}
+              {% elif product.data.image %}
+                <img src="{{ product.data.image }}" alt="{{ product.data.title }}">
+              {% else %}
+                <img src="/assets/images/default.jpg" alt="{{ product.data.title }}">
+              {% endif %}
+              {% set discountPrice = product.data.price | calculateDiscountPrice(product.data.discount, product.data.discountPrice) %}
+              {% if discountPrice %}
+                {% if product.data.discount == 'custom' %}
+                  <span class="offer-badge">Oferta</span>
+                {% else %}
+                  <span class="offer-badge">Descuento {{ product.data.discount }}%</span>
+                {% endif %}
+              {% endif %}
+              <h3>{{ product.data.title }}</h3>
+              {% if product.templateContent %}
+                <div class="description">{{ product.templateContent | striptags | truncate(150) }}</div>
+              {% endif %}
+              {% set discountPrice = product.data.price | calculateDiscountPrice(product.data.discount, product.data.discountPrice) %}
+              {% if discountPrice %}
+                <div class="price-container">
+                  <p class="price discount-price">Q{{ discountPrice | formatPrice }}</p>
+                  <p class="price original-price">Q{{ product.data.price | formatPrice }}</p>
+                </div>
+              {% else %}
+                <p class="price">Q{{ product.data.price | formatPrice }}</p>
+              {% endif %}
+            </a>
+            <a class="btn-whatsapp" href="https://wa.me/16263941200?text=Hola, me interesa el producto: {{ product.data.title }}" target="_blank" rel="noopener">
+              <span>Comprar por</span>
+              <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.371c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-products">No hay productos en esta categoría.</p>
+      {% endif %}
+    </section>
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Obtener todos los enlaces de categoría
+    const categoryLinks = document.querySelectorAll('.category-nav a');
+    const categorySections = document.querySelectorAll('.category-section');
+    
+    // Añadir evento de clic a cada enlace
+    categoryLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Eliminar la clase active de todos los enlaces y secciones
+        categoryLinks.forEach(l => l.classList.remove('active'));
+        categorySections.forEach(s => s.classList.remove('active'));
+        
+        // Añadir la clase active al enlace actual
+        this.classList.add('active');
+        
+        // Obtener el id de la sección a mostrar
+        const targetId = this.getAttribute('href').substring(1);
+        const targetSection = document.getElementById(targetId);
+        
+        // Mostrar la sección correspondiente
+        if (targetSection) {
+          targetSection.classList.add('active');
+        }
+      });
+    });
+    
+    // Comprobar si hay un hash en la URL y activar la pestaña correspondiente
+    if (window.location.hash) {
+      const hash = window.location.hash.substring(1);
+      const hashLink = document.querySelector(`.category-nav a[href="#${hash}"]`);
+      if (hashLink) {
+        hashLink.click();
+      }
+    }
+  });
+  
+  // Función para alternar categorías en móvil
+  function toggleCategories() {
+    const hiddenItems = document.querySelectorAll('.category-item-hidden');
+    const toggleBtn = document.querySelector('.toggle-btn');
+    const toggleText = document.querySelector('.toggle-text');
+    const toggleIcon = document.querySelector('.toggle-icon');
+    
+    const isExpanded = hiddenItems[0].style.display === 'block' || (hiddenItems[0].style.display === '' && window.getComputedStyle(hiddenItems[0]).display !== 'none');
+    
+    hiddenItems.forEach(item => {
+      item.style.display = isExpanded ? 'none' : 'block';
+    });
+    
+    if (isExpanded) {
+      toggleText.textContent = 'Más categorías';
+      toggleIcon.textContent = '▼';
+      toggleBtn.classList.remove('expanded');
+    } else {
+      toggleText.textContent = 'Mostrar menos';
+      toggleIcon.textContent = '▲';
+      toggleBtn.classList.add('expanded');
+    }
+  }
+</script>

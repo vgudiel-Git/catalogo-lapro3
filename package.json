@@ -1,0 +1,17 @@
+{
+  "name": "catalog-demo",
+  "version": "1.0.1",
+  "description": "Demo del catalogo de Hugo creado con Eleventy",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}
