@@ -89,11 +89,24 @@ header h1 a {
   transition: all 0.3s ease;
   text-shadow: 0 0 10px var(--color-accent-cyan);
   font-weight: 900;
+  display: inline-block;
 }
 
 header h1 a:hover {
   color: var(--color-accent-cyan);
   text-shadow: 0 0 15px var(--color-accent-cyan);
+}
+
+.logo-image {
+  height: 40px;
+  width: auto;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 10px var(--color-accent-cyan));
+}
+
+.logo-image:hover {
+  filter: drop-shadow(0 0 15px var(--color-accent-cyan));
+  transform: scale(1.05);
 }
 
 header nav a {
@@ -221,6 +234,10 @@ header nav a.active {
   
   .main-menu {
     justify-content: flex-end;
+  }
+  
+  .logo-image {
+    height: 35px;
   }
 }
 
