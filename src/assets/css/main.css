@@ -244,13 +244,9 @@ header nav a.active {
 /* --- Main content --- */
 main {
   padding: 2rem;
-  background: rgba(20, 20, 40, 0.4);
+  background: transparent;
   margin: 1rem auto;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   max-width: 1200px;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.1);
   color: var(--color-text);
 }
 
@@ -282,6 +278,10 @@ main {
   gap: 2rem;
   margin-top: 2rem;
   grid-template-columns: repeat(4, 1fr);
+  background: transparent;
+  padding: 0;
+  border: none;
+  box-shadow: none;
 }
 
 /* --- Category Navigation --- */
@@ -293,6 +293,13 @@ main {
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   margin-top: 1rem;
   border-radius: 8px;
+}
+
+/* Category sections should not have extra background */
+.category-sections {
+  background: transparent;
+  padding: 0;
+  margin: 0;
 }
 
 .category-nav {
@@ -408,10 +415,20 @@ main {
 /* --- Category Sections --- */
 .category-section {
   display: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .category-section.active {
   display: grid;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
 }
 
 .category-title {
