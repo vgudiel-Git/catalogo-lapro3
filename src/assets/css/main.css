@@ -484,11 +484,14 @@ main {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
     padding: 0 0.5rem;
+    max-width: 95%;
+    margin: 0 auto;
   }
   
   .product-card {
     padding: 1rem;
     border-radius: 12px;
+    max-width: 100%;
   }
   
   .product-card img {
@@ -505,11 +508,14 @@ main {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
     padding: 0 0.25rem;
+    max-width: 98%;
+    margin: 0 auto;
   }
   
   .product-card {
     padding: 0.75rem;
     border-radius: 10px;
+    max-width: 100%;
   }
   
   .product-card img {
@@ -523,11 +529,14 @@ main {
     grid-template-columns: repeat(2, 1fr);
     gap: 0.5rem;
     padding: 0 0.125rem;
+    max-width: 99%;
+    margin: 0 auto;
   }
   
   .product-card {
     padding: 0.6rem;
     border-radius: 8px;
+    max-width: 100%;
   }
   
   .product-card img {
