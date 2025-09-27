@@ -1,0 +1,1321 @@
+/*
+ * Archivo: /css/style.css
+ * Propósito: Estilos completos para el index.html original y los nuevos elementos globales.
+ * Versión: Refactored - Organized and optimized structure
+*/
+
+/* --- CSS Variables & Root --- */
+:root {
+    --color-background: #000010;
+    --color-text: #E0E0FF;
+    --color-text-light: #FFFFFF;
+    --color-text-secondary: #b8b8e6;
+    --color-accent-purple: #8E44AD;
+    --color-accent-cyan: #00E0FF;
+    --color-accent-green: #25D366;
+    --font-main: 'Inter', sans-serif;
+}
+
+/* --- General Styles & Resets --- */
+/* Note: Basic resets and layout moved to critical.css */
+
+section { 
+    padding: 50px 0; 
+}
+
+/* Header & Navigation */
+/* Note: Basic header styles moved to critical.css */
+
+/* Footer */
+.main-footer { 
+    padding: 4rem 5% 2rem; 
+    background: rgba(0,0,0, 0.2); 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+}
+
+.footer-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 3rem; 
+    margin-bottom: 3rem; 
+}
+
+.footer-bottom { 
+    text-align: center; 
+    padding-top: 2rem; 
+    border-top: 1px solid rgba(255,255,255,0.1); 
+    color: var(--color-text-secondary); 
+    font-size: 0.9rem; 
+}
+
+/* Grid Systems */
+.features-grid, 
+.testimonials-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 2rem; 
+}
+
+.ecosystem-list { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 2.5rem; 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    align-items: center;
+    gap: 2rem;
+}
+
+/* --- Typography --- */
+/* Note: Basic typography styles moved to critical.css */
+
+.section-title { 
+    text-align: center; 
+    font-size: clamp(2rem, 5vw, 2.5rem); 
+    font-weight: 700; 
+    margin-bottom: 4rem; 
+    color: var(--color-accent-cyan); 
+    text-shadow: 0 0 15px var(--color-accent-cyan); 
+    max-width: 650px; 
+    margin-left: auto; 
+    margin-right: auto; 
+    line-height: 1.3; 
+}
+
+/* Note: Typewriter text styles moved to critical.css */
+
+.card-content h3 { 
+    font-size: 1.5rem; 
+    margin-bottom: 0.75rem; 
+    color: #fff; 
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.card-number { 
+    font-size: 3rem; 
+    font-weight: 900; 
+    color: rgba(0, 224, 255, 0.5); 
+}
+
+.testimonial-quote { 
+    font-size: 0.95rem; 
+    line-height: 1.5; 
+    margin-bottom: 1.5rem; 
+    font-style: italic; 
+    position: relative; 
+    padding-left: 2rem; 
+}
+
+.testimonial-author { 
+    font-style: normal; 
+    font-weight: 700; 
+}
+
+.testimonial-company { 
+    font-style: normal; 
+    font-size: 0.8rem; 
+    color: var(--color-text-secondary); 
+}
+
+.cta-title { 
+    font-size: clamp(2.2rem, 5vw, 3rem); 
+    font-weight: 900; 
+    line-height: 1.2; 
+    margin-bottom: 1.5rem; 
+    color: #fff; 
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5); 
+}
+
+.cta-subtitle { 
+    font-size: 1.1rem; 
+    color: var(--color-text-secondary); 
+    max-width: 600px; 
+    margin: 0 auto 2.5rem; 
+    line-height: 1.7; 
+}
+
+.footer-column h4 { 
+    font-size: 1.1rem; 
+    color: var(--color-accent-cyan); 
+    margin-bottom: 1.5rem; 
+    text-transform: uppercase; 
+}
+
+.footer-column p { 
+    line-height: 1.7; 
+    color: var(--color-text-secondary); 
+}
+
+.footer-column a { 
+    color: var(--color-text-secondary); 
+    text-decoration: none; 
+    display: block; 
+    margin-bottom: 0.75rem; 
+    transition: color 0.3s ease; 
+}
+
+.footer-column a:hover { 
+    color: var(--color-text-light); 
+}
+
+.plan-header h3 {
+    font-size: 1.5rem;
+    color: var(--color-accent-cyan);
+    margin-bottom: 0.5rem;
+}
+
+.plan-header p {
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+    min-height: 40px; /* Asegura misma altura */
+}
+
+.plan-price {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.plan-price span {
+    font-size: 2rem;
+    vertical-align: super;
+    margin-right: 5px;
+    color: var(--color-accent-cyan);
+}
+
+.price-term {
+    color: var(--color-text-secondary);
+    margin-bottom: 2.5rem;
+}
+
+.portfolio-content h3 {
+    font-size: 2rem;
+    color: var(--color-accent-cyan);
+    margin-bottom: 1.5rem;
+}
+
+.portfolio-content p {
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.portfolio-content p strong {
+    color: var(--color-text-light);
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.faq-answer {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    color: var(--color-accent-cyan);
+}
+
+.info-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-form-wrapper h3 {
+     font-size: 1.8rem;
+     color: var(--color-accent-cyan);
+     margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.pricing-note {
+    text-align: center;
+    max-width: 600px;
+    margin: 3rem auto 0;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+}
+
+.pricing-note strong {
+    color: var(--color-text-light);
+}
+
+/* --- Component Styles --- */
+/* Note: Basic hero styles moved to critical.css */
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.hero-about {
+    padding-bottom: 8rem; /* Reduce el espacio inferior del hero en la página "about" */
+}
+
+.hero-fullwidth {
+    padding-bottom: 3rem; /* Controla el espacio después del héroe */
+}
+
+.hero-fullwidth .hero-content {
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    text-align: center;
+    max-width: 100%;
+}
+
+.hero-fullwidth .hero-content p {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0; /* El espacio se controla en el padding de la sección */
+}
+
+.hero-short {
+    min-height: 40vh;
+}
+
+/* Cards */
+.feature-card, 
+.ecosystem-card, 
+.testimonial-card, 
+.cta-card { 
+    background: rgba(20, 20, 40, 0.4); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(12px); 
+    border-radius: 15px; 
+    padding: 2.2rem; 
+    transition: all 0.4s ease; 
+    opacity: 0; 
+    transform: translateY(40px); 
+}
+
+.feature-card.visible, 
+.ecosystem-card.visible, 
+.testimonial-card.visible, 
+.cta-card.visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+.feature-card {
+    text-align: center;
+}
+
+.feature-card h2 {
+    font-size: 1.5rem;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover, 
+.ecosystem-card:hover, 
+.testimonial-card:hover, 
+.cta-card:hover { 
+    transform: translateY(-5px) scale(1.02); 
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); 
+}
+
+.feature-card:hover, 
+.ecosystem-card:hover { 
+    border-color: rgba(0, 224, 255, 0.7); 
+}
+
+.feature-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(0, 255, 255, 0.1), 0 10px 10px -5px rgba(0, 255, 255, 0.08);
+}
+
+/* Note: Basic card-icon styles moved to critical.css */
+
+.card-icon svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 8px rgba(var(--glow-color), 0.7));
+    transition: filter 0.3s ease-in-out;
+}
+
+.feature-card:hover .card-icon svg {
+    filter: drop-shadow(0 0 12px rgba(var(--glow-color), 0.9));
+}
+
+.feature-card:hover p {
+    color: var(--color-text);
+}
+
+.ecosystem-card:hover .card-icon svg {
+    filter: drop-shadow(0 0 12px rgba(var(--glow-color), 0.9));
+}
+
+.ecosystem-card:hover p {
+    color: var(--color-text);
+}
+
+.ecosystem-card { 
+    display: grid; 
+    grid-template-columns: auto 1fr; 
+    align-items: center; 
+    gap: 2.5rem; 
+}
+
+.card-link { 
+    color: var(--color-accent-cyan); 
+    text-decoration: none; 
+    font-weight: 700; 
+    transition: all 0.3s; 
+}
+
+.card-link:hover { 
+    text-shadow: 0 0 8px var(--color-accent-cyan); 
+    padding-left: 5px; 
+}
+
+/* Testimonial Cards */
+.testimonial-card { 
+    border-color: rgba(142, 68, 173, 0.2); 
+}
+
+.testimonial-card:hover { 
+    border-color: rgba(142, 68, 173, 0.7); 
+}
+
+.testimonial-quote::before { 
+    content: '"'; 
+    position: absolute; 
+    left: 0; 
+    top: -0.3rem; 
+    font-size: 3rem; 
+    color: rgba(142, 68, 173, 0.5); 
+    line-height: 1; 
+    z-index: -1; 
+}
+
+.testimonial-card footer { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.8rem; 
+    border-top: 1px solid rgba(142, 68, 173, 0.3); 
+    padding-top: 1.2rem; 
+}
+
+.testimonial-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(142, 68, 173, 0.5);
+    flex-shrink: 0; /* Evita que el avatar se encoja */
+}
+
+/* CTA Cards */
+.cta-card { 
+    text-align: center; 
+    animation: cta-glow 5s ease-in-out infinite alternate; 
+    padding: 4rem; 
+}
+
+/* Buttons */
+/* Note: Basic button styles moved to critical.css */
+
+.cta-button.primary-cta { 
+    transform: scale(1.1); 
+    transition: all 0.4s ease; 
+}
+
+.cta-button.primary-cta:hover { 
+    transform: scale(1.15); 
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); 
+}
+
+
+/* Social Icons */
+.social-icons { 
+    display: flex; 
+    gap: 1rem; 
+    justify-content: flex-start;
+}
+
+.social-icons a { 
+    color: var(--color-text-secondary); 
+    font-size: 1.5rem; 
+}
+
+.social-icons a:hover { 
+    color: var(--color-accent-cyan); 
+}
+
+/* Pricing Plans */
+.pricing-plan {
+    background: rgba(20, 20, 40, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative; /* Para el badge */
+}
+
+.pricing-plan.featured {
+    transform: scale(1.08);
+    border: 2px solid var(--color-accent-cyan);
+    z-index: 10;
+}
+
+.plan-badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-purple));
+    color: var(--color-background);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.plan-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 2.5rem;
+    flex-grow: 1; /* Empuja el botón hacia abajo */
+}
+
+.plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.plan-features li svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--color-accent-green);
+    flex-shrink: 0;
+}
+
+.plan-cta {
+    margin-top: auto;
+}
+
+/* Portfolio Items */
+.portfolio-list .portfolio-item {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    align-items: center;
+    padding: 3rem;
+    margin-bottom: 4rem;
+    background: rgba(20, 20, 40, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+}
+
+.portfolio-list .portfolio-item:last-child {
+    margin-bottom: 0;
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.portfolio-content .cta-button {
+    margin-top: 1.5rem;
+    background: transparent;
+    border: 1px solid var(--color-accent-cyan);
+    transition: all 0.3s ease;
+}
+
+/* FAQ Accordion */
+.faq-accordion {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: rgba(20, 20, 40, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+    transition: all 0.4s ease;
+}
+
+.faq-item:hover {
+    border-color: rgba(0, 224, 255, 0.5);
+}
+
+/* Ocultar el marcador por defecto del <summary> */
+.faq-question::-webkit-details-marker { 
+    display: none; 
+}
+
+.faq-question { 
+    list-style: none; 
+}
+
+.faq-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-accent-cyan);
+    border-radius: 50%;
+    position: relative;
+    transition: transform 0.3s ease;
+    flex-shrink: 0; /* Evita que el ícono se deforme */
+}
+
+.faq-icon::before, 
+.faq-icon::after {
+    content: '';
+    position: absolute;
+    background-color: var(--color-accent-cyan);
+    transition: transform 0.3s ease;
+}
+
+/* Línea horizontal */
+.faq-icon::before { 
+    top: 50%; 
+    left: 20%; 
+    right: 20%; 
+    height: 2px; 
+    transform: translateY(-50%); 
+}
+
+/* Línea vertical */
+.faq-icon::after { 
+    top: 20%; 
+    bottom: 20%; 
+    left: 50%; 
+    width: 2px; 
+    transform: translateX(-50%); 
+}
+
+/* Estilos para cuando el acordeón está abierto */
+.faq-item[open] > .faq-question {
+    color: var(--color-accent-cyan);
+}
+
+.faq-item[open] > .faq-question .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-item[open] > .faq-question .faq-icon::before {
+    transform: translateY(-50%) scaleX(1);
+}
+
+.faq-item[open] > .faq-question .faq-icon::after {
+    transform: translateX(-50%) scaleY(1);
+}
+
+/* Contact Form */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.info-item .info-icon {
+    font-size: 1.5rem;
+    color: var(--color-accent-cyan);
+    margin-top: 5px;
+}
+
+.info-item p, 
+.info-item a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    line-height: 1.6;
+}
+
+.info-item a:hover {
+    color: var(--color-accent-cyan);
+}
+
+.contact-form { 
+    width: 100%; 
+}
+
+.form-group { 
+    margin-bottom: 1.5rem; 
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: var(--color-text-light);
+    font-size: 1rem;
+    font-family: var(--font-main);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-accent-cyan);
+    box-shadow: 0 0 10px rgba(0, 224, 255, 0.3);
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2300E0FF' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+.contact-form button {
+    width: 100%;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+#form-status {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 700;
+}
+
+/* --- Utility Classes --- */
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.text-accent-cyan {
+    color: var(--color-accent-cyan);
+}
+
+/* Team section title with reduced bottom margin */
+.team-title {
+    margin-bottom: 1rem;
+}
+
+/* Team section subtitle with centered styling */
+.team-subtitle {
+    color: var(--color-text-secondary);
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+/* Enhanced Team Section Styles */
+.team-showcase {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.team-member-card {
+    background: rgba(20, 20, 40, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 35px;
+    padding: 0;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+    width: 230px;
+    max-width: 100%;
+    position: relative;
+}
+
+.team-member-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.team-member-image {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.team-member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.team-member-info {
+    padding: 1.8rem;
+    text-align: center;
+}
+
+.team-member-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.team-member-role {
+    font-size: 1rem;
+    color: var(--color-accent-cyan);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 224, 255, 0.6);
+    transition: all 0.3s ease;
+}
+
+.team-member-bio {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    transition: all 0.3s ease;
+}
+
+.team-member-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    border-color: rgba(0, 224, 255, 0.6);
+}
+
+/* Note: Basic team member image styles moved to critical.css */
+
+.team-member-card:hover .team-member-image img {
+    transform: scale(1.1);
+}
+
+.team-member-card:hover .team-member-name {
+    color: var(--color-accent-cyan);
+    text-shadow: 0 0 20px rgba(0, 224, 255, 0.8);
+}
+
+.team-member-card:hover .team-member-role {
+    text-shadow: 0 0 15px rgba(0, 224, 255, 1);
+}
+
+.team-member-card:hover .team-member-bio {
+    color: var(--color-text);
+}
+
+/* Pricing section title with negative bottom margin */
+.pricing-title {
+    margin-bottom: -2rem;
+}
+
+/* Pricing section subtitle with centered styling */
+.pricing-subtitle {
+    color: var(--color-text-secondary);
+    max-width: 800px;
+    margin: 3rem auto 5rem;
+    text-align: center;
+}
+
+/* Philosophy section adjustments */
+.philosophy {
+    padding-top: 0; /* Reduce el espacio superior de la sección de filosofía */
+}
+
+/* Portfolio item order adjustments */
+.portfolio-item.item-reversed .portfolio-image {
+    order: 2;
+}
+
+/* Feature card glow colors */
+.feature-card:nth-child(1) {
+    --glow-color: 59, 130, 246;
+}
+
+.feature-card:nth-child(2) {
+    --glow-color: 34, 197, 94;
+}
+
+.feature-card:nth-child(3) {
+    --glow-color: 234, 179, 8;
+}
+
+.feature-card:nth-child(4) {
+    --glow-color: 168, 85, 247;
+}
+
+/* --- Animations --- */
+/* Note: Basic animations moved to critical.css */
+
+@keyframes cta-glow { 
+    from { 
+        border-color: rgba(0, 224, 255, 0.3); 
+        box-shadow: 0 0 30px rgba(0, 224, 255, 0.1); 
+    } 
+    to { 
+        border-color: rgba(142, 68, 173, 0.4); 
+        box-shadow: 0 0 45px rgba(142, 68, 173, 0.2); 
+    } 
+}
+
+/* --- Media Queries --- */
+/* Note: Basic hero media queries moved to critical.css */
+
+
+@media (max-width: 768px) {
+    .philosophy {
+        padding-top: 30px; /* Ajuste específico para móvil */
+    }
+    
+    .portfolio-item.item-reversed .portfolio-image {
+        order: 0; /* Revierte el orden en móvil para que la imagen siempre esté arriba */
+    }
+    
+    .hero-about {
+        min-height: auto; /* Resetea la altura mínima para móvil */
+        padding-top: 60px; /* Espacio superior razonable */
+        padding-bottom: 20px; /* Espacio inferior reducido */
+    }
+    
+    .philosophy {
+        padding-top: 40px; /* Espacio superior reducido para la siguiente sección */
+    }
+    
+    /* Footer centering for mobile */
+    .footer-grid {
+        text-align: center;
+    }
+    
+    .footer-column {
+        text-align: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+    
+    /* Team section responsive adjustments */
+    .team-showcase {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .team-member-card {
+        width: 100%;
+        max-width: 180px;
+        margin: 0 auto;
+    }
+    
+    .team-member-image {
+        height: 200px;
+    }
+    
+    .team-member-info {
+        padding: 1rem;
+    }
+    
+    .team-member-name {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .team-member-role {
+        font-size: 0.8rem;
+        margin-bottom: 0.7rem;
+    }
+    
+    .team-member-bio {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    /* Services cards tablet responsive */
+    .features-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        padding: 0;
+        max-width: 700px;
+        margin: 0 auto;
+        justify-items: center;
+    }
+    
+    .feature-card {
+        padding: 2rem;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+    
+    .feature-card h2 {
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+    
+    .feature-card p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+    
+    .card-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1.2rem;
+    }
+    
+    /* Testimonial cards mobile adjustments */
+    .testimonial-card {
+        padding: 1.3rem;
+    }
+    
+    .testimonial-quote {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+    }
+    
+    .testimonial-quote::before {
+        font-size: 2.2rem;
+        left: 0;
+        top: -0.2rem;
+    }
+    
+    .testimonial-card footer {
+        padding-top: 0.8rem;
+        gap: 0.6rem;
+    }
+    
+    .testimonial-avatar {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .testimonial-author {
+        font-size: 0.85rem;
+    }
+    
+    .testimonial-company {
+        font-size: 0.75rem;
+    }
+    
+    /* FAQ section mobile adjustments */
+    .faq-question {
+        padding: 1rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .faq-answer {
+        padding: 0 1.2rem 1.2rem 1.2rem;
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+    
+    .faq-item {
+        margin-bottom: 0.6rem;
+    }
+    
+    .faq-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+    /* Ecosystem cards mobile adjustments */
+    .card-content h3 {
+        font-size: 1.3rem;
+        line-height: 1.3;
+    }
+    
+    .card-content p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-showcase {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        padding: 0 0.5rem;
+    }
+    
+    .team-member-card {
+        max-width: 160px;
+    }
+    
+    .team-member-image {
+        height: 180px;
+    }
+    
+    .team-member-info {
+        padding: 0.8rem;
+    }
+    
+    .team-member-name {
+        font-size: 1rem;
+    }
+    
+    .team-member-role {
+        font-size: 0.75rem;
+    }
+    
+    .team-member-bio {
+        font-size: 0.7rem;
+    }
+    
+    /* Services cards mobile responsive */
+    .features-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+        padding: 0 0.5rem;
+        max-width: 100%;
+        margin: 0 auto;
+        justify-items: center;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .feature-card h2 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+    
+    .feature-card p {
+        font-size: 0.7rem;
+        line-height: 1.4;
+    }
+    
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 1rem;
+    }
+    
+    /* Testimonial cards extra mobile adjustments */
+    .testimonial-card {
+        padding: 1rem;
+    }
+    
+    .testimonial-quote {
+        font-size: 0.8rem;
+        line-height: 1.3;
+        margin-bottom: 0.8rem;
+        padding-left: 1.2rem;
+    }
+    
+    .testimonial-quote::before {
+        font-size: 1.8rem;
+        left: 0;
+        top: -0.1rem;
+    }
+    
+    .testimonial-card footer {
+        padding-top: 0.6rem;
+        gap: 0.5rem;
+    }
+    
+    .testimonial-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .testimonial-author {
+        font-size: 0.8rem;
+    }
+    
+    .testimonial-company {
+        font-size: 0.7rem;
+    }
+    
+    /* FAQ section small mobile adjustments */
+    .faq-question {
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .faq-answer {
+        padding: 0 1rem 1rem 1rem;
+        font-size: 0.8rem;
+        line-height: 1.3;
+    }
+    
+    .faq-item {
+        margin-bottom: 0.5rem;
+    }
+    
+    .faq-icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Ecosystem cards small mobile adjustments */
+    .card-content h3 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+    
+    .card-content p {
+        font-size: 0.7rem;
+        line-height: 1.4;
+    }
+}
+
+/* Extra narrow screens - ensure perfect centering */
+@media (max-width: 360px) {
+    .features-grid {
+        padding: 0 0.25rem;
+        gap: 0.5rem;
+    }
+    
+    .feature-card {
+        max-width: 260px;
+        padding: 1.2rem;
+    }
+    
+    .feature-card h2 {
+        font-size: 1rem;
+    }
+    
+    .feature-card p {
+        font-size: 0.65rem;
+    }
+    
+    .card-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    /* Testimonial cards ultra-narrow screen adjustments */
+    .testimonial-card {
+        padding: 0.8rem;
+    }
+    
+    .testimonial-quote {
+        font-size: 0.75rem;
+        line-height: 1.2;
+        margin-bottom: 0.6rem;
+        padding-left: 1rem;
+    }
+    
+    .testimonial-quote::before {
+        font-size: 1.5rem;
+        left: 0;
+        top: 0;
+    }
+    
+    .testimonial-card footer {
+        padding-top: 0.5rem;
+        gap: 0.4rem;
+    }
+    
+    .testimonial-avatar {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .testimonial-author {
+        font-size: 0.75rem;
+    }
+    
+    .testimonial-company {
+        font-size: 0.65rem;
+    }
+    
+    /* FAQ section ultra-narrow screen adjustments */
+    .faq-question {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .faq-answer {
+        padding: 0 0.8rem 0.8rem 0.8rem;
+        font-size: 0.75rem;
+        line-height: 1.2;
+    }
+    
+    .faq-item {
+        margin-bottom: 0.4rem;
+    }
+    
+    .faq-icon {
+        width: 14px;
+        height: 14px;
+    }
+    
+    /* Ecosystem cards ultra-narrow screen adjustments */
+    .card-content h3 {
+        font-size: 1rem;
+    }
+    
+    .card-content p {
+        font-size: 0.65rem;
+    }
+}
