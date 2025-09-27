@@ -7,7 +7,12 @@
   <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
-  <header>
+  <!-- Fixed animated background -->
+  <div class="fixed-background"></div>
+  
+  <!-- Page content -->
+  <div class="page-content">
+    <header>
     <div class="header-inner">
       <h1><a href="/">Mi Catálogo</a></h1>
       <nav>
@@ -29,9 +34,10 @@
     {{ content | safe }}
   </main>
 
-  <footer>
-    <p>&copy; <script>document.write(new Date().getFullYear())</script> Mi Catálogo</p>
-  </footer>
+    <footer>
+      <p>&copy; <script>document.write(new Date().getFullYear())</script> Mi Catálogo</p>
+    </footer>
+  </div>
 
   <!-- Script de Netlify Identity para redirección -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -48,6 +54,28 @@
   </script>
 
   <script>
+    // Product card animations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Animate product cards on scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      // Observe all product cards
+      document.querySelectorAll('.product-card').forEach(card => {
+        observer.observe(card);
+      });
+    });
+
     // Manejar clics en los botones de ofertas del header
     document.addEventListener('DOMContentLoaded', function() {
       const ofertasButtons = document.querySelectorAll('.ofertas-button');
